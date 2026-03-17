@@ -798,12 +798,13 @@ elif st.session_state.view == "details":
     with right:
         genres = data.get("genres") or []
         genre_tags = "".join([f"<span class='tag'>{genre['name']}</span>" for genre in genres])
+        tag_markup = genre_tags or "<span class='tag'>Unclassified</span>"
         st.markdown(
             (
                 "<div class='detail-card'>"
                 f"<div class='detail-title'>{data.get('title', '')}</div>"
                 f"<div class='detail-meta'>Release: {data.get('release_date') or 'Unknown'}</div>"
-                f"<div class='tag-row'>{genre_tags or '<span class=\"tag\">Unclassified</span>'}</div>"
+                f"<div class='tag-row'>{tag_markup}</div>"
                 "<h3>Overview</h3>"
                 f"<div class='section-copy'>{data.get('overview') or 'No overview available.'}</div>"
                 "</div>"
