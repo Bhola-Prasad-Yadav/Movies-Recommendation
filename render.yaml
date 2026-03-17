@@ -1,23 +1,12 @@
 services:
   - type: web
-    name: movie-rec-api
+    name: movie-rec-app
     runtime: python
-    buildCommand: pip install -r requirements-backend.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /health
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9
-      - key: TMDB_API_KEY
-        sync: false
-
-  - type: web
-    name: movie-rec-ui
-    runtime: python
-    buildCommand: pip install -r requirements-frontend.txt
+    plan: free
+    buildCommand: pip install -r requirements.txt
     startCommand: streamlit run app.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
-      - key: API_BASE
+      - key: TMDB_API_KEY
         sync: false
